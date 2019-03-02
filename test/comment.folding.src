@@ -1,0 +1,7 @@
+var $test = function() { // {{{
+	{{?it.test}}
+		return 'test';
+	{{??}}
+		return 'hello';
+	{{?}}
+}; // }}}

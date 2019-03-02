@@ -1,0 +1,3 @@
+function(it) {
+var out='';if(it.morning){out+='\ngood morning\n';}else{out+='\nhello\n';}out+='\n';return out;
+}

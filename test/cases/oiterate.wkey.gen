@@ -1,0 +1,3 @@
+function(it) {
+var out='';var key,value,iter1=it;if(iter1){for(key in iter1){value=iter1[key];out+='\n';console.log(key, value);out+='\n';}}out+='\n';return out;
+}

@@ -1,0 +1,3 @@
+function(it) {
+var out='';it.hello=function(){var out='Hello world!\n';return out;};out+='\n';return out;
+}

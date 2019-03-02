@@ -1,0 +1,3 @@
+function(it) {
+var out='var $test = function() { // {{{\n\t';if(it.test){out+='\n\t\treturn \'test\';\n\t';}else{out+='\n\t\treturn \'hello\';\n\t';}out+='\n}; // }}}\n';return out;
+}

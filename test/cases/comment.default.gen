@@ -1,0 +1,3 @@
+function(it) {
+var out='\n';return out;
+}

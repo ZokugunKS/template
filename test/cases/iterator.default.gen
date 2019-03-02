@@ -1,0 +1,3 @@
+function(it) {
+var out='';var file=it.folder.first();while(file){out+='\n'+(file.name())+'<br/>\n';file=file.next();}out+='\n';return out;
+}

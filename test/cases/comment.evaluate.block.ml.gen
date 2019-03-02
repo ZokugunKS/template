@@ -1,0 +1,3 @@
+function(it) {
+var out='';console.log('hello');out+='\n';return out;
+}

@@ -1,0 +1,3 @@
+function(it) {
+var out='';it.hello=function(name){var out='Hello '+(name)+'\n';return out;};out+='\n';return out;
+}

@@ -1,0 +1,6 @@
+{{|var i = 0;|}}
+{{/do}}
+	<tablecell ui-value="{{:i}}">
+		<celltitle>Score: {{:i}}</celltitle>
+	</tablecell>
+{{\while(++i <= 10)}}

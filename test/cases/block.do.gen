@@ -1,0 +1,3 @@
+function(it) {
+var out='';var i = 0;out+='\n';do{out+='<tablecell ui-value="'+(i)+'"><celltitle>Score: '+(i)+'</celltitle></tablecell>\n';}while(++i <= 10);out+='\n';return out;
+}

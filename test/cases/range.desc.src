@@ -1,0 +1,5 @@
+{{[i 9..0]}}
+	<tablecell ui-value="{{:i}}">
+		<celltitle>Score: {{:i}}</celltitle>
+	</tablecell>
+{{[]}}
