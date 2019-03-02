@@ -146,6 +146,7 @@ import '@zokugun/template'
 ```
 
 The variable `template` is the default template compiler. It contains the tags described above.
+
 The class `Template` allows to create new templates. It has the following API:
 
 ### new Template(tags, options)
