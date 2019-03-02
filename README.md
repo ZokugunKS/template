@@ -45,21 +45,82 @@ console.log(myTemplate('miss White'))
 Differences from doT
 --------------------
 
-doT			| zokugun.template					| Description
----			| ----------------					| -----------
-`{{ }}`		| <code>{{&#124; &#124;}}</code>	| for evaluation
-`{{= }}`	| `{{: }}`							| for interpolation
-`{{! }}`	| `{{! }}`							| for interpolation with encoding
-`{{# }}`	| use `{{: }}`						| for using partials
-`{{## #}}`	| `{{#name(args)}} {{#}}`			| for defining partials
-`{{? }}`	| `{{? }}`							| for conditionals
-`{{~ }}`	| `{{~ }}`							| for array iteration
-			| `{{. }}`							| for object iteration
-			| `{{% }}`							| for iterator
-			| `{{[ ]}}`							| for range iteration
-			| `{{/ }}` `{{\ }}`					| for block
-			| <code>{{` }}</code>				| for escaping template
-			| `{{-- --}}`						| for comments
+<table>
+	<thead>
+		<tr>
+			<th>doT</th>
+			<th>@zokugun/template</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>{{ }}</code></td>
+			<td><code>{{| |}}</code></td>
+			<td>for evaluation</td>
+		</tr>
+		<tr>
+			<td><code>{{= }}</code></td>
+			<td><code>{{: }}</code></td>
+			<td>for interpolation</td>
+		</tr>
+		<tr>
+			<td><code>{{! }}</code></td>
+			<td><code>{{! }}</code></td>
+			<td>for interpolation with encoding</td>
+		</tr>
+		<tr>
+			<td><code>{{# }}</code></td>
+			<td>use <code>{{: }}</code></td>
+			<td>for using partials</td>
+		</tr>
+		<tr>
+			<td><code>{{## #}}</code></td>
+			<td><code>{{#name(args)}} {{#}}</code></td>
+			<td>for defining partials</td>
+		</tr>
+		<tr>
+			<td><code>{{? }}</code></td>
+			<td><code>{{? }}</code></td>
+			<td>for conditionals</td>
+		</tr>
+		<tr>
+			<td><code>{{~ }}</code></td>
+			<td><code>{{~ }}</code></td>
+			<td>for array iteration</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{. }}</code></td>
+			<td>for object iteration</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{% }}</code></td>
+			<td>for iterator</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{[ ]}}</code></td>
+			<td>for range iteration</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{/ }}` `{{\ }}</code></td>
+			<td>for block</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{` }}</code></td>
+			<td>for escaping template</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><code>{{-- --}}</code></td>
+			<td>for comments</td>
+		</tr>
+	</tbody>
+</table>
 
 `{{ }}` has been changed to `{{| |}}` to be able to do:
 
@@ -84,9 +145,10 @@ API
 import '@zokugun/template'
 ```
 
-The variable *template* is the default template compiler. It contains the tags describe below.
+The variable `template` is the default template compiler. It contains the tags described above.
+The class `Template` allows to create new templates. It has the following API:
 
-### template.new(tags, options)
+### new Template(tags, options)
 
 The default compiler contains the extra method *new* which allows you to create new template compiler.
 
@@ -104,7 +166,7 @@ By default, *options* will be:
 Example:
 
 ```kaosscript
-const custom = template.new({
+const custom = new Template({
 	interpolate: {
 		regex: /\$\{([\s\S]+?)\}/g
 		replace(m, code) => this.cse.start + 'it.' + code + this.cse.end
@@ -708,7 +770,6 @@ hello
 {{#hello}}
 	Hello world!
 {{#}}
-
 {{:hello()}}
 ```
 				</pre>
@@ -736,7 +797,6 @@ Hello world!
 {{#hello(name)}}
 	Hello {{:name}}!
 {{#}}
-
 {{:hello(it.name)}}
 ```
 				</pre>
