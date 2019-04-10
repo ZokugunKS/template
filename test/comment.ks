@@ -22,7 +22,7 @@ func compile(name) {
 
 	const generated = fs.readFileSync(path.join(__dirname, name + '.gen'), {
 		encoding: 'utf8'
-	}):String.rtrim()
+	}):String.trimEnd()
 
 	expect(template.compile(source, {
 		strip: false

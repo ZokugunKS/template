@@ -45,6 +45,6 @@ describe('custom', func() {
 
 		expect(custom.compile(source, {
 			allowsCurrying: false
-		}).toSource()).to.equal(generated.rtrim())
+		}).toSource()).to.equal(generated.trimEnd())
 	})
 })

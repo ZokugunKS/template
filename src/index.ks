@@ -116,7 +116,7 @@ export class Template {
 
 		options = Object.defaults(@options, options)
 
-		let inlines = template.before('\n')
+		let inlines = template.substringBefore('\n')
 		if inlines.startsWith('{{}} ') {
 			template = template.substr(inlines.length + 1)
 			inlines = inlines.split(' ')
@@ -337,7 +337,7 @@ export const template = new Template({
 				return "';var " + valueName + "=" + $unescape(iterate) + ";" + "while(" + valueName + "){out+='"
 			}
 			else {
-				return "';" + iterate.before('.') + "=" + $unescape(iterate) + ";}out+='"
+				return "';" + iterate.substringBefore('.') + "=" + $unescape(iterate) + ";}out+='"
 			}
 		}
 	} // }}}
