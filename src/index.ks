@@ -225,13 +225,13 @@ export class Template {
 			options.varnames = Object.keys(variables).join()
 		}
 
-		template = this.compile(template, options)
+		const fn = this.compile(template, options)
 
 		if variables? {
-			return template.apply(null, Object.values(variables))
+			return fn.apply(null, Object.values(variables))
 		}
 		else {
-			return template()
+			return fn()
 		}
 	} // }}}
 }
