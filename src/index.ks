@@ -49,7 +49,7 @@ func $build(that) { // {{{
 	that._replace = new Function('str,tags,context', replace + ';')
 } // }}}
 
-func $escape(text) { // {{{
+func $escape(text?) { // {{{
 	if text == null {
 		return ''
 	}
@@ -65,7 +65,14 @@ func $escape(text) { // {{{
 
 func $noop() => ''
 
-func $unescape(code) => code.replace(/\\('|\\)/g, '$1').replace(/[\r\t\n]/g, ' ')
+func $unescape(code?) { // {{{
+	if code == null {
+		return ''
+	}
+	else {
+		return code.replace(/\\('|\\)/g, '$1').replace(/[\r\t\n]/g, ' ')
+	}
+} // }}}
 
 export class Template {
 	private {
@@ -84,12 +91,12 @@ export class Template {
 		}, options)
 
 		if @options.variables is Object {
-			@varnames = 'escape,' + Object.keys(this.options.variables).join(',')
-			@variables = Object.values(this.options.variables)
+			@varnames = 'escape,' + Object.keys(@options.variables).join(',')
+			@variables = Object.values(@options.variables)
 
-			delete this.options.variables
+			delete @options.variables
 
-			this.options.allowsCurrying = true
+			@options.allowsCurrying = true
 		}
 
 		@tags = tags || {}
@@ -152,7 +159,7 @@ export class Template {
 			sid: 0
 		}
 
-		let str = this._replace("var out='" + template.replace(/<!--.*-->/g, '').replace(/'|\\/g, '\\$&'), this._tags, context) + "';"
+		let str = @replace("var out='" + template.replace(/<!--.*-->/g, '').replace(/'|\\/g, '\\$&'), @tags, context) + `';`
 
 		if options.strip {
 			str = str
@@ -166,7 +173,7 @@ export class Template {
 			.replace(/(\s|;|}|^|{)out\+=''\+/g, '$1out+=')
 
 		try {
-			str += "return out;"
+			str += 'return out;'
 
 			if options.inlineVariables {
 				for const name in options.inlineVariables {
@@ -208,10 +215,11 @@ export class Template {
 			}
 		}
 		catch e {
-			if !?console && console.log {
-				console.log("Could not create a template function: " + str)
-				console.log(e.stack || e.toString())
+			if console?.log? {
+				console.log(`Could not create a template function: \(str)`)
+				console.log(e.stack ?? e.toString())
 			}
+
 			throw e
 		}
 	} // }}}
