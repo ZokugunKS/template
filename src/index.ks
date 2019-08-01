@@ -147,7 +147,7 @@ export class Template {
 				}
 				else if inline[0] == 'v' {
 					if inline.startsWith('varnames:') {
-						options.varnames = inline.after(':')
+						options.varnames = inline.substringAfter(':')
 					}
 				}
 			}
